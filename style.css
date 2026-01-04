@@ -1,0 +1,195 @@
+/* =========================
+   BLACK AESTHETIC — MULTICOLOR GLOW (FINAL UPGRADE FOR YOUR ART GALLERY)
+   ========================= */
+
+/* ---------- Variables ---------- */
+:root{
+  --bg: #000000;
+  --panel: #0f1113;
+  --muted: #cfcfcf;
+  --accent1: #ff007f; /* pink */
+  --accent2: #00e6ff; /* cyan */
+  --accent3: #84ff4c; /* lime */
+  --accent4: #ffb86b; /* amber */
+  --glass: rgba(255,255,255,0.03);
+  --card-border: rgba(255,255,255,0.06);
+  --smooth: cubic-bezier(.2,.9,.2,1);
+}
+
+/* ---------- Global ---------- */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  min-height:100%;
+  font-family: "Poppins", system-ui;
+  background:var(--bg);
+  color:var(--muted);
+  transition:.45s var(--smooth);
+  line-height:1.5;
+}
+
+a{
+  color:rgb(255, 205, 238);
+  text-decoration:none;
+  padding:8px 14px;
+  border-radius:10px;
+  border:2px solid transparent;
+  background: rgba(219, 208, 247, 0.068);
+  transition:.28s var(--smooth);
+  font-weight:600;
+}
+a:hover{
+  transform:translateY(-4px);
+  box-shadow:0 6px 30px rgb(253, 106, 170);
+}
+
+/* ---------- Header ---------- */
+header{
+  position:sticky;
+  display:flex;
+  align-items:center;
+  top:0;
+  z-index: 100;
+  padding: 20px;
+  margin-left: 0%;
+  background:rgba(136, 136, 136, 0.02);
+  border-bottom:1px solid rgba(163, 173, 249, 0.04);
+  backdrop-filter: blur(6px);
+}
+
+header h1{
+  margin:0;
+  font-size:2.2rem;
+  font-weight:800;
+  letter-spacing:1px;
+  background: linear-gradient(90deg,var(--accent1),var(--accent2),var(--accent3),var(--accent4));
+  background-size:400% 100%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:hueShift 6s linear infinite;
+  text-transform:capitalize;
+}
+@keyframes hueShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* ---------- Gallery FIX (Replacing your <pre> hack) ---------- */
+:root{
+  --smooth: cubic-bezier(.25,.8,.25,1);
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;
+  padding:28px;
+}
+
+.gallery-item{
+  position: relative;
+  border-radius:12px;
+  overflow:hidden;
+  background:#000;
+  border:1px solid rgba(77, 2, 52, 0.07);
+  transition: transform .45s var(--smooth), box-shadow .45s var(--smooth);
+  height: 500px; 
+  border: #e3fc57 5px groove;
+}
+
+
+.gallery-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover; /* aspect ratio maintain kare */
+}
+
+
+.gallery-item:hover{
+  transform: translateY(-8px) scale(1.05);
+  box-shadow:
+    
+    0 0 48px #ffb86b;
+}
+
+.gallery-item:hover img{
+  transform:scale(1.08) rotate(.6deg);
+}
+
+
+/* ---------- Cards for Mandala, Pencil Color, Shading, Oil, Painting ---------- */
+.cards{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+  padding:25px;
+}
+.card{
+  width:220px;
+  min-height:160px;
+  border-radius:16px;
+  padding:18px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.05);
+  box-shadow:0 8px 30px rgba(0,0,0,0.6);
+  text-align:center;
+  transition:.38s var(--smooth);
+}
+.card:hover{
+  transform:translateY(-10px) scale(1.04);
+  box-shadow:0 20px 60px rgba(0,0,0,0.8),0 0 25px var(--accent1),0 0 45px var(--accent2);
+}
+.card h3{
+  color:#fff;
+  margin-bottom:8px;
+  font-size:1.1rem;
+}
+.card p{
+  color:#cfcfcf;
+  font-size:.93rem;
+}
+
+/* Multicolor Glow Frame */
+.mandala::before,
+.pencil::before,
+.shading::before,
+.oil::before,
+.painting::before{
+  content:"";
+  position:absolute;
+  inset:-3px;
+  z-index:-1;
+  border-radius:18px;
+  opacity:0;
+  filter:blur(12px);
+  transition:.4s var(--smooth);
+}
+.mandala::before{background:linear-gradient(90deg,#ff008c,#ff6ec7,#ffc6ec)}
+.pencil::before{background:linear-gradient(90deg,#00e6ff,#63f1ff,#bdffff)}
+.shading::before{background:linear-gradient(90deg,#84ff4c,#b4ff8f,#e4ffd5)}
+.oil::before{background:linear-gradient(90deg,#ffb86b,#ffd9a4,#fff1db)}
+.painting::before{background:linear-gradient(90deg,#ff007f,#00e6ff,#ffb86b)}
+
+.card:hover::before{
+  opacity:1;
+  transform:scale(1.06);
+}
+
+/* ---------- Footer ---------- */
+footer{
+  padding:25px;
+  text-align:center;
+  color:#cfcfcf;
+  background:rgba(255,255,255,0.02);
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+
+/* ---------- Responsive ---------- */
+@media(max-width:768px){
+  header h1{font-size:1.6rem}
+  .cards{gap:14px}
+  .card{width:100%;max-width:300px}
+}
